@@ -1,0 +1,138 @@
+/* Restorweb — cafetería de barrio con impresora de comandas */
+:root{
+  --espresso:#241410;
+  --roast:#3a2218;
+  --mocha:#6b4130;
+  --caramel:#c8924f;
+  --fresa:#c9707a;
+  --latte:#ecd3ca;
+  --foam:#f8eee9;
+  --ink:#2a1812;
+  --radius:6px;
+  --display:"Young Serif",Georgia,"Times New Roman",serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--body);background:var(--espresso);color:var(--foam);line-height:1.6;font-size:1.05rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--caramel);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--foam);color:var(--ink);padding:.5rem 1rem;z-index:99}
+.skip:focus{left:8px}
+
+/* Cabecera */
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:.6rem clamp(1rem,4vw,3rem);background:rgba(36,20,16,.94);backdrop-filter:blur(6px);border-bottom:2px dashed var(--mocha)}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-family:var(--display);font-size:1.5rem}
+.logo{width:42px;height:42px;fill:none;stroke:var(--foam);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.logo .cup{fill:var(--mocha)}
+.logo .saucer{fill:var(--caramel);stroke:none}
+.logo .steam{stroke:var(--fresa)}
+.logo .fork{stroke:var(--latte);stroke-width:2.4}
+.menu{display:flex;gap:.25rem;flex-wrap:wrap}
+.menu a{text-decoration:none;padding:.4rem .8rem;border-radius:999px;font-weight:500;transition:background .2s}
+.menu a:hover{background:var(--roast)}
+.menu a.on{background:var(--fresa);color:var(--espresso)}
+
+/* Botones */
+.btn{display:inline-block;background:var(--fresa);color:var(--espresso);font-weight:700;text-decoration:none;padding:.8rem 1.6rem;border-radius:var(--radius);box-shadow:0 5px 0 #8c434c;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(2px);box-shadow:0 3px 0 #8c434c}
+.btn:active{transform:translateY(5px);box-shadow:0 0 0 #8c434c}
+.btn.big{font-size:1.25rem;padding:1.1rem 2.4rem}
+
+/* Inicio */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;min-height:calc(100vh - 70px);padding:3rem clamp(1rem,6vw,5rem);background:radial-gradient(circle at 80% 30%,var(--roast),var(--espresso) 65%)}
+.hero h1{font-family:var(--display);font-size:clamp(3.2rem,9vw,7rem);line-height:1;letter-spacing:-.02em;color:var(--latte);margin-bottom:1.2rem}
+.promise{font-size:clamp(1.15rem,2.4vw,1.5rem);max-width:30ch;margin-bottom:2rem;color:var(--foam)}
+.printer{display:flex;flex-direction:column;align-items:center}
+.slot{width:min(360px,100%);height:26px;background:#150b08;border-radius:14px;border:3px solid var(--mocha);position:relative;z-index:2}
+.ticket{width:min(320px,88%);background:var(--latte);color:var(--ink);padding:1.4rem 1.4rem 2.2rem;margin-top:-6px;transform-origin:top;animation:print 2.6s steps(26,end) both;--zig:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) bottom/16px 100% repeat-x;-webkit-mask:var(--zig);mask:var(--zig);box-shadow:0 20px 30px rgba(0,0,0,.4)}
+.ticket h2{font-family:var(--display);font-size:1.25rem;text-align:center;border-bottom:2px dashed var(--mocha);padding-bottom:.7rem;margin-bottom:.8rem}
+.ticket ul{list-style:none}
+.ticket li{display:flex;justify-content:space-between;gap:1rem;padding:.3rem 0;border-bottom:1px dotted #b49a8e;opacity:0;animation:line .01s forwards}
+.ticket li span:last-child{color:var(--fresa);font-weight:700}
+.total{text-align:center;margin-top:1rem;font-weight:700}
+@keyframes print{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes line{to{opacity:1}}
+
+/* Bloques */
+.block{padding:5rem clamp(1rem,6vw,5rem);max-width:1200px;margin:0 auto}
+.block.dark{max-width:none;background:var(--roast);padding-inline:clamp(1rem,6vw,5rem)}
+.block.dark>*{max-width:1100px;margin-inline:auto}
+.block h2{font-family:var(--display);font-size:clamp(2rem,5vw,3.2rem);color:var(--latte);margin-bottom:1rem}
+.lead{max-width:60ch;font-size:1.2rem;margin-bottom:2.5rem}
+.sub{font-family:var(--display);font-size:1.6rem;color:var(--caramel);margin:2.5rem 0 1rem}
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+
+/* Hojas de papel */
+.paper{background:var(--latte);color:var(--ink);padding:1.8rem;border-radius:var(--radius);border-left:8px solid var(--fresa);box-shadow:6px 6px 0 #00000055}
+.paper h3{font-family:var(--display);font-size:1.5rem;margin-bottom:.6rem}
+.paper.accent{border-left-color:var(--caramel)}
+.paper p{max-width:62ch}
+
+.org-type{margin-top:2.5rem;padding:1.6rem;border:2px dashed var(--mocha);border-radius:var(--radius)}
+.org-type h3{font-family:var(--display);color:var(--caramel);margin-bottom:.4rem}
+.founders{margin-top:.8rem;color:var(--latte);font-weight:500}
+
+/* Organigrama */
+.org{display:flex;flex-direction:column;align-items:center}
+.node{font:inherit;color:var(--ink);background:var(--latte);border:2px solid transparent;border-radius:var(--radius);padding:.7rem .9rem;text-align:center;cursor:pointer;transition:transform .15s,border-color .15s}
+.node:hover,.node.sel{border-color:var(--fresa);transform:translateY(-3px)}
+.node.top-node{background:var(--fresa);font-weight:700;font-size:1.1rem;padding:1rem 2rem}
+.node small{display:block;font-size:.78rem;opacity:.8}
+.org-stem{width:3px;height:28px;background:var(--mocha)}
+.org-row{display:grid;grid-template-columns:repeat(7,1fr);gap:.6rem;width:100%;border-top:3px solid var(--mocha);padding-top:28px;position:relative}
+.org-row .node{position:relative;font-size:.9rem}
+.org-row .node::before{content:"";position:absolute;left:50%;top:-31px;width:3px;height:28px;background:var(--mocha)}
+
+/* Fichas */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.2rem}
+.card{background:var(--foam);color:var(--ink);border-radius:var(--radius);padding:1.3rem;position:relative;border-top:10px solid var(--caramel);scroll-margin-top:90px}
+.card.hl{outline:4px solid var(--fresa);outline-offset:4px}
+.card h4{font-family:var(--display);font-size:1.2rem;margin-bottom:.1rem}
+.card .cargo{color:var(--mocha);font-weight:500;margin-bottom:.8rem}
+.card dl{display:grid;gap:.5rem}
+.card dt{font-weight:700;font-size:.9rem;color:var(--fresa)}
+.card dd{font-size:.95rem}
+.card.supreme{border-top-color:var(--fresa)}
+
+/* Cómo trabajamos */
+.smart{list-style:none;margin-top:1rem;display:grid;gap:.4rem;font-size:.95rem}
+.smart li{padding-left:.9rem;border-left:3px solid var(--caramel)}
+.smart b{color:var(--mocha)}
+.okr{font-family:var(--display);font-size:1.3rem;margin-bottom:1rem}
+.meter{height:20px;background:#fff8;border-radius:999px;overflow:hidden;border:2px solid var(--mocha)}
+.meter-fill{height:100%;width:0;background:repeating-linear-gradient(45deg,var(--fresa) 0 12px,#d98a93 12px 24px);transition:width .5s}
+.meter-note{margin-top:.5rem;font-weight:700}
+.hint{font-size:.85rem;opacity:.75}
+.legend{margin-bottom:1rem}
+.legend b{color:var(--fresa)}
+.table-wrap{overflow-x:auto;border-radius:var(--radius)}
+.raci{width:100%;border-collapse:collapse;background:var(--latte);color:var(--ink);min-width:640px}
+.raci th,.raci td{padding:.75rem;text-align:center;border-bottom:1px dashed #b49a8e}
+.raci th{background:var(--mocha);color:var(--foam);font-weight:500}
+.raci th:first-child,.raci td:first-child{text-align:left}
+.raci td.A{background:#e7b3b8;font-weight:700}
+.raci td.R{font-weight:700;color:#8c434c}
+.raci label{display:flex;gap:.6rem;align-items:center;cursor:pointer}
+.raci input{width:1.1rem;height:1.1rem;accent-color:var(--fresa)}
+.raci tr.done td:first-child span{text-decoration:line-through;opacity:.6}
+
+/* Contacto */
+.contact{text-align:center}
+.contact .lead{margin-inline:auto}
+.note{margin-top:1.2rem;font-size:.9rem;opacity:.75}
+.foot{text-align:center;padding:2rem;border-top:2px dashed var(--mocha);color:var(--latte);font-size:.9rem}
+
+/* Móvil */
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;text-align:left;min-height:auto}
+  .org-row{grid-template-columns:1fr;border-top:0;border-left:3px solid var(--mocha);padding:0 0 0 1.2rem;margin-left:1rem}
+  .org-row .node::before{left:-1.2rem;top:50%;width:1.2rem;height:3px}
+  .org>.org-stem{display:none}
+  .org{align-items:stretch}
+  .node.top-node{margin-bottom:1rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .ticket li{opacity:1}
+}
